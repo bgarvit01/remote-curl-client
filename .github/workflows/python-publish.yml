@@ -23,11 +23,15 @@ jobs:
 
       - name: Install build tools
         run: |
-          pip install build
+          pip install build twine
 
       - name: Build the package
         run: |
           python -m build
 
-      - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+      - name: Upload to PyPI
+        run: |
+          twine upload dist/*
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
