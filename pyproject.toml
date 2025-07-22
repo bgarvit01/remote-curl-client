@@ -1,0 +1,27 @@
+[project]
+name = "remote-curl-client"
+version = "0.1.0"
+description = "Remote curl-based API requester over SSH"
+readme = "README.md"
+requires-python = ">=3.7"
+license = "MIT"
+authors = [
+    { name = "Garvit Bhateja", email = "bgarvit01@gmail.com" }
+]
+dependencies = [
+    "paramiko>=2.11.0"
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "mypy", "build"]
+
+[project.urls]
+Homepage = "https://github.com/bgarvit01/remote-curl-client"
+Repository = "https://github.com/bgarvit01/remote-curl-client"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["remote_curl_client*"]
