@@ -69,6 +69,7 @@ class RemoteCurlClient:
         port: int = 22,
         key_filename: Optional[str] = None,
         connect_timeout: int = 10,
+        logging_level: int = logging.INFO
     ) -> None:
         self.hostname = hostname
         self.username = username
@@ -76,6 +77,8 @@ class RemoteCurlClient:
         self.port = port
         self.key_filename = key_filename
         self.connect_timeout = connect_timeout
+        if logging_level is not logging.INFO:
+            self.set_logging_level(logging_level)
 
     # ---------------- SSH connection helper ----------------
     def _get_ssh_client(self) -> paramiko.SSHClient:
@@ -309,3 +312,13 @@ class RemoteCurlClient:
             k, v = line.split(":", 1)
             headers[k.strip()] = v.strip()
         return headers
+    
+    def set_logging_level(self, level: int) -> None:
+        """
+        Set the logging level for this client instance.
+        Useful for debugging or controlling verbosity.
+        """
+        logger.setLevel(level)
+        for handler in logger.handlers:
+            handler.setLevel(level)
+        logger.info("Logging level set to %s", logging.getLevelName(level))

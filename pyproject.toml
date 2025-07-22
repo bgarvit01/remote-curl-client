@@ -1,6 +1,6 @@
 [project]
 name = "remote-curl-client"
-version = "1.0.0"
+version = "1.4.0"
 description = "Remote curl-based API requester over SSH"
 readme = "README.md"
 requires-python = ">=3.7"
